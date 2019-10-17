@@ -18,7 +18,6 @@ Sending a string:
   uses: joelwmale/webhook-action@master
   env:
     WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-  with:
     data: "Hello from github actions!"
 ```
 
@@ -29,13 +28,12 @@ Sending a body of data:
   uses: joelwmale/webhook-action@master
   env:
     WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-  with:
     data: "{'deployment': 'finished', 'project': 'actions'}"
 ```
 
 It is **highly** recommended to use the action is an explicit commit SHA-1:
 
-`uses = "joelwmale/webhook-action@master@{SHA-1}"` to find a commit click here: https://github.com/joelwmale/webhook-action/commits/master
+`uses = "joelwmale/webhook-action@{SHA-1}"` to find a commit click here: https://github.com/joelwmale/webhook-action/commits/master
 
 ### Arguments
 
