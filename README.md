@@ -11,24 +11,15 @@ Supports all [workflow event types](https://developer.github.com/webhooks/#event
 
 ## Usage
 
-Sending a string:
+Example:
 
 ```yml
 - name: Webhook
   uses: joelwmale/webhook-action@master
-  env:
-    WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-    data: "Hello from github actions!"
-```
-
-Sending a body of data:
-
-```yml
-- name: Webhook
-  uses: joelwmale/webhook-action@master
-  env:
-    WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-    data: "{'deployment': 'finished', 'project': 'actions'}"
+  with:
+    url: ${{ secrets.WEBHOOK_URL }}
+    headers: "{Content-Type: 'application/json'}"
+    body: "{event: 'Deployment', project: 'joelwmale/webhook-action'}"
 ```
 
 It is **highly** recommended to use the action is an explicit commit SHA-1:
@@ -37,19 +28,29 @@ It is **highly** recommended to use the action is an explicit commit SHA-1:
 
 ### Arguments
 
-* ```yml 
-  data: "Hello from github actions!"
-  ```
+### Headers
 
-* ```yml
-  data: "{'deployment': 'finished', 'project': 'actions'}"
-  ```
+Allows you to send custom headers with the request
+
+```yml 
+  headers: "{Repository: 'joelwmale/webhook-action'}"
+```
+
+### Body
+
+Allows you to send a json payload in a string format
+
+```yml 
+  body: "{event: 'Deployment', project: 'joelwmale/webhook-action'}"
+```
 
 ### Environment
 
-The action is expecting a single environment variable of your data. This can be pre-encoded json string, or just a message. Format it to how your API is expecting.
+The action is expecpecting a few environmental variables:
 
-* **`WEBHOOK_URL`** (**required**): This is the webhook url to send the payload to.
+* **`url`** (**required**): The url to send the webhook to
+* **`headers`** (**optional**): Any headers you want to be sent with the webhook
+* **`body`** (**optional**): The body of data send with the webhook
 
 ## Issues
 
