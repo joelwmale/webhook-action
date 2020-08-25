@@ -1,13 +1,18 @@
 name: 'Webhook'
-description: 'Wait a designated number of milliseconds'
+description: 'Send a webhook event to anywhere!'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  url:
+    description: 'The url to send the webhook event to'
     required: true
-    default: '1000'
+  headers:
+    description: 'Additional headers to send alongside the defaults'
+    required: false
+  body:
+    description: 'The data sent to the webhook'
+    required: false
 outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  status: 
+    description: 'The status of the webhook event'
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'dist/main.js'
