@@ -39,19 +39,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core = require("@actions/core");
 var http_1 = require("./http");
 function run() {
-    var _a;
+    var _a, _b;
     return __awaiter(this, void 0, void 0, function () {
         var url, headers, body;
-        return __generator(this, function (_b) {
+        return __generator(this, function (_c) {
             try {
                 url = core.getInput('url');
-                headers = (_a = core.getInput('headers')) !== null && _a !== void 0 ? _a : {};
-                body = core.getInput('body');
+                headers = (_a = core.getInput('headers')) !== null && _a !== void 0 ? _a : '';
+                body = (_b = core.getInput('body')) !== null && _b !== void 0 ? _b : '';
                 core.info("Sending webhook request to " + url + "...");
                 core.debug((new Date()).toTimeString());
-                http_1.http.make(url, headers, body).then(function (res) { return console.log('hi'); });
+                http_1.http.make(url, headers, body)
+                    .then(function (res) { return core.setOutput('statusCode', res.status); });
                 core.info((new Date()).toTimeString());
-                core.setOutput('time', new Date().toTimeString());
             }
             catch (error) {
                 core.setFailed(error.message);
