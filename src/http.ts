@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 class Http {
   async make(url: string, headers: string, body: string): Promise<any> {
     return new Promise((resolve, reject) => {
