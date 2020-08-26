@@ -7,8 +7,9 @@ var Http = (function () {
     }
     Http.prototype.make = function (url, headers, body) {
         var _this = this;
-        return new Promise(function () {
-            fetch(url, _this.getOptions('post', headers, body));
+        return new Promise(function (resolve, reject) {
+            fetch(url, _this.getOptions('post', headers, body))
+                .then(function (res) { return resolve(res); });
         });
     };
     Http.prototype.getOptions = function (method, headers, body) {

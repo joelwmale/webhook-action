@@ -2,8 +2,9 @@ const fetch = require('node-fetch');
 
 class Http {
   make(url: string, headers: string, body: string): Promise<any> {
-    return new Promise(() => {
-      fetch(url, this.getOptions('post', headers, body));
+    return new Promise((resolve, reject) => {
+      fetch(url, this.getOptions('post', headers, body))
+        .then((res: Response) => resolve(res));
     });
   }
 
