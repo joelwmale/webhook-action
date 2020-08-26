@@ -1,7 +1,6 @@
 {
     "name": "webhook-action",
-    "version": "1.0.1",
-    "private": true,
+    "version": "2.0.2",
     "description": "Github Webhook Action",
     "main": "dist/main.js",
     "scripts": {
@@ -15,6 +14,7 @@
         "url": "git+https://github.com/joelwmale/webhook-action.git"
     },
     "keywords": [
+        "github",
         "actions",
         "node",
         "webhook",
