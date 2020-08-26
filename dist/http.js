@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.http = void 0;
+var axios = require('axios').default;
 var Http = (function () {
     function Http() {
     }
@@ -45,21 +46,22 @@ var Http = (function () {
             var _this = this;
             return __generator(this, function (_a) {
                 return [2, new Promise(function (resolve, reject) {
-                        fetch(url, _this.getOptions('post', headers, body))
+                        axios({
+                            method: 'post',
+                            url: url,
+                            headers: _this.getHeaders(headers),
+                            data: JSON.parse(body)
+                        })
                             .then(function (res) { return resolve(res.body); })
                             .catch(function (res) { return reject(res.body); });
                     })];
             });
         });
     };
-    Http.prototype.getOptions = function (method, headers, body) {
-        var options = {
-            headers: JSON.parse(headers),
-            method: method
-        };
-        options.body = JSON.stringify(body);
-        options.headers['content-type'] = 'application/json';
-        return options;
+    Http.prototype.getHeaders = function (headersString) {
+        var headers = JSON.parse(headersString);
+        headers['content-type'] = 'application/json';
+        return headers;
     };
     return Http;
 }());
