@@ -2,7 +2,6 @@ import * as core from '@actions/core';
 import { http } from './http';
 
 async function run() {
-  try {
     const url = core.getInput('url');
     const headers = core.getInput('headers') ?? '';
     const body = core.getInput('body') ?? '';
@@ -20,13 +19,13 @@ async function run() {
         core.setOutput('statusCode', res.status);
         // report on the status code
         core.info(`Received status code: ${res.status}`);
+        // debug end
+        core.info((new Date()).toTimeString());
+      })
+      .catch((err) => {
+        // set the action to failed
+        core.setFailed(`Received status code: ${err.status}`);
       });
-
-    // debug end
-    core.info((new Date()).toTimeString());
-  } catch (error) {
-    core.setFailed(error.message);
-  }
 }
 
 run();
