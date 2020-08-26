@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "strictPropertyInitialization": false,
+        "jsx": "react",
+        "lib": [
+          "dom",
+          "es7"
+        ],
+        "module": "commonjs",
+        "noImplicitReturns": true,
+        "noImplicitAny": false,
+        "outDir": "./dist/",
+        "removeComments": true,
+        "sourceMap": true,
+        "strict": true,
+        "target": "es5"
+    },
+    "exclude": ["node_modules"]
+}
