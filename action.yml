@@ -1,4 +1,4 @@
-name: 'Webhook'
+name: 'Webhook Action'
 description: 'Send a webhook event to anywhere!'
 inputs:
   url:
