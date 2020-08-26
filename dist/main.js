@@ -47,10 +47,13 @@ function run() {
                 url = core.getInput('url');
                 headers = (_a = core.getInput('headers')) !== null && _a !== void 0 ? _a : '';
                 body = (_b = core.getInput('body')) !== null && _b !== void 0 ? _b : '';
-                core.info("Sending webhook request to " + url + "...");
+                core.info("Sending webhook request to " + url);
                 core.debug((new Date()).toTimeString());
                 http_1.http.make(url, headers, body)
-                    .then(function (res) { return core.setOutput('statusCode', res.status); });
+                    .then(function (res) {
+                    core.setOutput('statusCode', res.status);
+                    core.info("Received status code: " + res.status);
+                });
                 core.info((new Date()).toTimeString());
             }
             catch (error) {
