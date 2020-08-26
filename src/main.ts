@@ -3,8 +3,8 @@ import { http } from './http';
 
 async function run() {
     const url = core.getInput('url');
-    const headers = core.getInput('headers') ?? '';
-    const body = core.getInput('body') ?? '';
+    const headers = core.getInput('headers') ?? null;
+    const body = core.getInput('body') ?? null;
 
     // initial info
     core.info(`Sending webhook request to ${url}`);

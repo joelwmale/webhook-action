@@ -14,10 +14,12 @@ var Http = (function () {
     };
     Http.prototype.getOptions = function (method, headers, body) {
         var options = {
-            headers: JSON.parse(headers),
+            headers: headers ? JSON.parse(headers) : {},
             method: method
         };
-        options.body = JSON.stringify(body);
+        if (body) {
+            options.body = body;
+        }
         options.headers['content-type'] = 'application/json';
         return options;
     };

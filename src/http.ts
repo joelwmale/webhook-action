@@ -10,12 +10,14 @@ class Http {
 
   getOptions(method: string, headers: string, body: string) {
     const options: any = {
-      headers: JSON.parse(headers),
+      headers: headers ? JSON.parse(headers) : {},
       method
     };
 
-    // stringify the body
-    options.body = JSON.stringify(body);
+    if (body) {
+      // parse the body
+      options.body = body;
+    }
 
     // set these headers
     options.headers['content-type'] = 'application/json';
