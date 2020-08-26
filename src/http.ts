@@ -1,27 +1,26 @@
-const fetch = require('node-fetch');
+const axios = require('axios').default;
 
 class Http {
   async make(url: string, headers: string, body: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      fetch(url, this.getOptions('post', headers, body))
+      axios({
+        method: 'post',
+        url,
+        headers: this.getHeaders(headers),
+        data: JSON.parse(body)
+      })
         .then((res) => resolve(res.body))
         .catch((res) => reject(res.body));
     });
   }
 
-  getOptions(method: string, headers: string, body: string) {
-    const options: any = {
-      headers: JSON.parse(headers),
-      method
-    };
-
-    // stringify the body
-    options.body = JSON.stringify(body);
+  getHeaders(headersString: string): object {
+    const headers = JSON.parse(headersString);
 
     // set these headers
-    options.headers['content-type'] = 'application/json';
+    headers['content-type'] = 'application/json';
 
-    return options;
+    return headers;
   }
 }
 
