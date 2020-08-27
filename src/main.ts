@@ -3,7 +3,7 @@ import { http } from './http';
 
 async function run() {
     const url = core.getInput('url') ?? process.env.WEBHOOK_URL;
-    const headers = core.getInput('headers') ?? null;
+    const headers = core.getInput('headers') ?? process.env.HEADERS ?? null;
     const body = core.getInput('body') ?? process.env.data ?? null;
 
     // initial info
