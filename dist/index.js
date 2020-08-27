@@ -86,9 +86,9 @@ function run() {
     return __awaiter(this, void 0, void 0, function () {
         var url, headers, body;
         return __generator(this, function (_a) {
-            url = core.getInput('url') ? core.getInput('url') : (process.env.url ? process.env.url : '');
+            url = core.getInput('url') ? core.getInput('url') : (process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : '');
             headers = core.getInput('headers') ? core.getInput('headers') : (process.env.headers ? process.env.headers : null);
-            body = core.getInput('body') ? core.getInput('body') : (process.env.body ? process.env.body : null);
+            body = core.getInput('body') ? core.getInput('body') : (process.env.data ? process.env.data : null);
             if (!url) {
                 core.setFailed('A url is required to run this action.');
                 return [2];
