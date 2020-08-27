@@ -2,9 +2,9 @@ import * as core from '@actions/core';
 import { http } from './http';
 
 async function run() {
-    const url = core.getInput('url');
+    const url = core.getInput('url') ?? process.env.WEBHOOK_URL;
     const headers = core.getInput('headers') ?? null;
-    const body = core.getInput('body') ?? null;
+    const body = core.getInput('body') ?? process.env.data ?? null;
 
     // initial info
     core.info(`Sending webhook request to ${url}`);
