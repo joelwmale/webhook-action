@@ -2,9 +2,15 @@ import * as core from '@actions/core';
 import { http } from './http';
 
 async function run() {
-    const url = core.getInput('url');
-    const headers = core.getInput('headers') ?? null;
-    const body = core.getInput('body') ?? null;
+    const url = core.getInput('url') ? core.getInput('url') : (process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : '');
+    const headers = core.getInput('headers') ? core.getInput('headers') : (process.env.headers ? process.env.headers : null);
+    const body = core.getInput('body') ? core.getInput('body') : (process.env.data ? process.env.data : null);
+
+    if (!url) {
+      // validate a url
+      core.setFailed('A url is required to run this action.');
+      return;
+    }
 
     // initial info
     core.info(`Sending webhook request to ${url}`);

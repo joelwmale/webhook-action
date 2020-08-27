@@ -39,13 +39,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core = require("@actions/core");
 var http_1 = require("./http");
 function run() {
-    var _a, _b;
     return __awaiter(this, void 0, void 0, function () {
         var url, headers, body;
-        return __generator(this, function (_c) {
-            url = core.getInput('url');
-            headers = (_a = core.getInput('headers')) !== null && _a !== void 0 ? _a : null;
-            body = (_b = core.getInput('body')) !== null && _b !== void 0 ? _b : null;
+        return __generator(this, function (_a) {
+            url = core.getInput('url') ? core.getInput('url') : (process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : '');
+            headers = core.getInput('headers') ? core.getInput('headers') : (process.env.headers ? process.env.headers : null);
+            body = core.getInput('body') ? core.getInput('body') : (process.env.data ? process.env.data : null);
+            if (!url) {
+                core.setFailed('A url is required to run this action.');
+                return [2];
+            }
             core.info("Sending webhook request to " + url);
             core.debug((new Date()).toTimeString());
             http_1.http.make(url, headers, body)
