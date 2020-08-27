@@ -2129,13 +2129,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core = __webpack_require__(186);
 var http_1 = __webpack_require__(319);
 function run() {
-    var _a, _b;
+    var _a, _b, _c, _d, _e;
     return __awaiter(this, void 0, void 0, function () {
         var url, headers, body;
-        return __generator(this, function (_c) {
-            url = core.getInput('url');
-            headers = (_a = core.getInput('headers')) !== null && _a !== void 0 ? _a : null;
-            body = (_b = core.getInput('body')) !== null && _b !== void 0 ? _b : null;
+        return __generator(this, function (_f) {
+            url = (_a = core.getInput('url')) !== null && _a !== void 0 ? _a : process.env.WEBHOOK_URL;
+            headers = (_c = (_b = core.getInput('headers')) !== null && _b !== void 0 ? _b : process.env.HEADERS) !== null && _c !== void 0 ? _c : null;
+            body = (_e = (_d = core.getInput('body')) !== null && _d !== void 0 ? _d : process.env.data) !== null && _e !== void 0 ? _e : null;
             core.info("Sending webhook request to " + url);
             core.debug((new Date()).toTimeString());
             http_1.http.make(url, headers, body)
