@@ -23,7 +23,7 @@
     "author": "Joel Male",
     "license": "MIT",
     "dependencies": {
-        "@actions/core": "^1.2.4",
+        "@actions/core": "^1.2.5",
         "node-fetch": "^2.6.0"
     },
     "devDependencies": {
