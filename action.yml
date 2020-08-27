@@ -1,5 +1,9 @@
-name: 'Webhook'
+name: 'Webhook Action'
+author: "Joel Male"
 description: 'Send a webhook event to anywhere!'
+branding:
+  icon: 'alert-octagon'  
+  color: 'gray-dark'
 inputs:
   url:
     description: 'The url to send the webhook event to'
