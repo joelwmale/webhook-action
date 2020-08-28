@@ -23,6 +23,9 @@ async function run() {
       .then((res) => {
         // output the status
         core.setOutput('statusCode', res.status);
+        // throw error on error status codes
+        if (res.status >= 400)
+            throw new Error(`Failing with code: ${res.status}`)
         // report on the status code
         core.info(`Received status code: ${res.status}`);
         // debug end
