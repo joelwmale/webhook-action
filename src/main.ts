@@ -9,7 +9,8 @@ async function run() {
     if (!url) {
       // validate a url
       core.setFailed('A url is required to run this action.');
-      return;
+      // error
+      throw new Error('A url is required to run this action.');
     }
 
     // initial info
@@ -21,6 +22,12 @@ async function run() {
     // make the request
     http.make(url, headers, body)
       .then((res) => {
+        // if the status code is not 2xx
+        if (res.status >= 400) {
+          // throw an error
+          error(res.status);
+        }
+
         // output the status
         core.setOutput('statusCode', res.status);
         // report on the status code
@@ -29,9 +36,15 @@ async function run() {
         core.info((new Date()).toTimeString());
       })
       .catch((err) => {
-        // set the action to failed
-        core.setFailed(`Received status code: ${err.status}`);
+        error(err.status);
       });
+}
+
+function error(statusCode) {
+  // set the action to failed
+  core.setFailed(`Received status code: ${statusCode}`);
+  // throw an error
+  throw new Error(`Request failed with status code: ${statusCode}`);
 }
 
 run();
