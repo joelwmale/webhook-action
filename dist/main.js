@@ -47,22 +47,29 @@ function run() {
             body = core.getInput('body') ? core.getInput('body') : (process.env.data ? process.env.data : null);
             if (!url) {
                 core.setFailed('A url is required to run this action.');
-                return [2];
+                throw new Error('A url is required to run this action.');
             }
             core.info("Sending webhook request to " + url);
             core.debug((new Date()).toTimeString());
             http_1.http.make(url, headers, body)
                 .then(function (res) {
+                if (res.status >= 400) {
+                    error(res.status);
+                }
                 core.setOutput('statusCode', res.status);
                 core.info("Received status code: " + res.status);
                 core.info((new Date()).toTimeString());
             })
                 .catch(function (err) {
-                core.setFailed("Received status code: " + err.status);
+                error(err.status);
             });
             return [2];
         });
     });
+}
+function error(statusCode) {
+    core.setFailed("Received status code: " + statusCode);
+    throw new Error("Request failed with status code: " + statusCode);
 }
 run();
 //# sourceMappingURL=main.js.map
