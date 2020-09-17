@@ -3,7 +3,7 @@ pull_request_rules:
     conditions:
       - base=develop
       - label=dependencies
-      - conflict=false
+      - -conflict
     actions:
       merge:
         method: merge
