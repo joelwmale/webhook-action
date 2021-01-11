@@ -40,18 +40,20 @@ var core = require("@actions/core");
 var http_1 = require("./http");
 function run() {
     return __awaiter(this, void 0, void 0, function () {
-        var url, headers, body;
+        var url, headers, body, insecureStr, insecure;
         return __generator(this, function (_a) {
             url = core.getInput('url') ? core.getInput('url') : (process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : '');
             headers = core.getInput('headers') ? core.getInput('headers') : (process.env.headers ? process.env.headers : null);
             body = core.getInput('body') ? core.getInput('body') : (process.env.data ? process.env.data : null);
+            insecureStr = core.getInput('insecure') ? core.getInput('insecure') : (process.env.data ? process.env.data : false);
+            insecure = insecureStr == 'true';
             if (!url) {
                 core.setFailed('A url is required to run this action.');
                 throw new Error('A url is required to run this action.');
             }
             core.info("Sending webhook request to " + url);
             core.debug((new Date()).toTimeString());
-            http_1.http.make(url, headers, body)
+            http_1.http.make(url, headers, body, insecure)
                 .then(function (res) {
                 if (res.status >= 400) {
                     error(res.status);
