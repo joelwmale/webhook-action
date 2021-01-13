@@ -20,6 +20,7 @@ Example:
     url: ${{ secrets.WEBHOOK_URL }}
     headers: '{"repository": "joelwmale/webhook-action"}'
     body: '{"event": "deployment", "repository": "joelwmale/webhook-action"}'
+    insecure: false
 ```
 
 It is **highly** recommended to use the action is an explicit commit SHA-1:
@@ -33,6 +34,7 @@ The action has support for the following input variables (arguments):
 * **`url`** (**required**): The url to send the webhook to
 * **`headers`** (**optional**): Any headers you want to be sent with the webhook
 * **`body`** (**optional**): The body of data send with the webhook
+* **`insecure`** (**optional**): Enables calling to known self-signed or invalid SSL certificates
 
 You can find more information on how to use these input variables below.
 
