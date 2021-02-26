@@ -1,6 +1,6 @@
 'use strict';
 
-var callBound = require('../helpers/callBound');
+var callBound = require('call-bind/callBound');
 
 var $SymbolValueOf = callBound('Symbol.prototype.valueOf', true);
 

@@ -1,6 +1,6 @@
 'use strict';
 
-// https://www.ecma-international.org/ecma-262/5.1/#sec-8
+// https://ecma-international.org/ecma-262/5.1/#sec-8
 
 module.exports = function Type(x) {
 	if (x === null) {

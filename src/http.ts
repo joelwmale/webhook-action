@@ -1,14 +1,15 @@
 const fetch = require('node-fetch');
+var https = require('https');
 
 class Http {
-  make(url: string, headers: string|null, body: string|null): Promise<any> {
+  make(url: string, headers: string | null, body: string | null, ignoreCertificate: boolean | null): Promise<any> {
     return new Promise((resolve, reject) => {
-      fetch(url, this.getOptions('post', headers, body))
+      fetch(url, this.getOptions('post', headers, body, ignoreCertificate))
         .then((res: Response) => resolve(res));
     });
   }
 
-  getOptions(method: string, headers: string|null, body: string|null) {
+  getOptions(method: string, headers: string | null, body: string | null, ignoreCertificate: boolean | null) {
     const options: any = {
       headers: headers ? JSON.parse(headers) : {},
       method
@@ -17,6 +18,11 @@ class Http {
     if (body) {
       // parse the body
       options.body = body;
+    }
+
+    if (ignoreCertificate) {
+      // ignore the certificate by not rejecting authorized servers
+      options.agent = new https.Agent({ rejectUnauthorized: false });
     }
 
     // set these headers

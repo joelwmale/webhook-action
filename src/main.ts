@@ -5,6 +5,7 @@ async function run() {
     const url = core.getInput('url') ? core.getInput('url') : (process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : '');
     const headers = core.getInput('headers') ? core.getInput('headers') : (process.env.headers ? process.env.headers : null);
     const body = core.getInput('body') ? core.getInput('body') : (process.env.data ? process.env.data : null);
+    const insecure = core.getInput('insecure') ? core.getInput('insecure') == 'true' : (process.env.insecure ? process.env.insecure == 'true' : false);
 
     if (!url) {
       // validate a url
@@ -20,7 +21,7 @@ async function run() {
     core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
 
     // make the request
-    http.make(url, headers, body)
+    http.make(url, headers, body, insecure)
       .then((res) => {
         // if the status code is not 2xx
         if (res.status >= 400) {
