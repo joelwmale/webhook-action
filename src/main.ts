@@ -26,6 +26,7 @@ async function run() {
         if (res.status >= 400) {
           // throw an error
           error(res.status);
+          return;
         }
 
         // output the status
@@ -37,6 +38,7 @@ async function run() {
       })
       .catch((err) => {
         error(err.status);
+        return;
       });
 }
 
