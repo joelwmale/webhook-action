@@ -40,28 +40,48 @@ var core = require("@actions/core");
 var http_1 = require("./http");
 function run() {
     return __awaiter(this, void 0, void 0, function () {
-        var url, headers, body;
+        var url, headers, body, insecure;
         return __generator(this, function (_a) {
-            url = core.getInput('url') ? core.getInput('url') : (process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : '');
-            headers = core.getInput('headers') ? core.getInput('headers') : (process.env.headers ? process.env.headers : null);
-            body = core.getInput('body') ? core.getInput('body') : (process.env.data ? process.env.data : null);
+            url = core.getInput('url')
+                ? core.getInput('url')
+                : process.env.WEBHOOK_URL
+                    ? process.env.WEBHOOK_URL
+                    : '';
+            headers = core.getInput('headers')
+                ? core.getInput('headers')
+                : process.env.headers
+                    ? process.env.headers
+                    : null;
+            body = core.getInput('body')
+                ? core.getInput('body')
+                : process.env.data
+                    ? process.env.data
+                    : null;
+            insecure = core.getInput('insecure')
+                ? core.getInput('insecure') == 'true'
+                : process.env.insecure
+                    ? process.env.insecure == 'true'
+                    : false;
             if (!url) {
                 core.setFailed('A url is required to run this action.');
                 throw new Error('A url is required to run this action.');
             }
             core.info("Sending webhook request to " + url);
-            core.debug((new Date()).toTimeString());
-            http_1.http.make(url, headers, body)
+            core.debug(new Date().toTimeString());
+            http_1.http
+                .make(url, headers, body, insecure)
                 .then(function (res) {
                 if (res.status >= 400) {
                     error(res.status);
+                    return;
                 }
                 core.setOutput('statusCode', res.status);
                 core.info("Received status code: " + res.status);
-                core.info((new Date()).toTimeString());
+                core.info(new Date().toTimeString());
             })
                 .catch(function (err) {
                 error(err.status);
+                return;
             });
             return [2];
         });

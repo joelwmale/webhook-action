@@ -1,0 +1,9 @@
+pull_request_rules:
+  - name: automatic merge for develop raised by dependabot with label dependencies
+    conditions:
+      - base=develop
+      - label=dependencies
+      - -conflict
+    actions:
+      merge:
+        method: merge
