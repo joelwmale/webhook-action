@@ -233,10 +233,10 @@
     "@typescript-eslint/types" "4.22.0"
     eslint-visitor-keys "^2.0.0"
 
-"@vercel/ncc@^0.28.3":
-  version "0.28.3"
-  resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.28.3.tgz#9461bdbf334d616759b0e7e5415e2f480b9aa30f"
-  integrity sha512-g3gk4D9itbhUQa5MtN7TOdeoQnNLkPDCox5SBaQ/H3Or5lo59TOaZWrLb+x47StiAJ+8DXZS/9MJ67cIBWSsRw==
+"@vercel/ncc@^0.28.4":
+  version "0.28.4"
+  resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.28.4.tgz#ca83bc00a994c48525d8b83abe32e6edf38551c6"
+  integrity sha512-vQe8WuBMiBgJbRM9TXMSb2zXmaoplH84K91nd2CmIlrXH0F3RjyiO9kdvaZbKbAQ66Mh/hMF2JPtDzbVvsx+Eg==
 
 acorn-jsx@^5.3.1:
   version "5.3.1"
