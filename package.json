@@ -27,7 +27,7 @@
         "node-fetch": "^3.2.7"
     },
     "devDependencies": {
-        "@types/jest": "^28.1.4",
+        "@types/jest": "^28.1.5",
         "@types/node": "^18.0.3",
         "@typescript-eslint/parser": "^5.30.6",
         "@vercel/ncc": "^0.34.0",
