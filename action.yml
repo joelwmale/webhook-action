@@ -21,5 +21,5 @@ outputs:
   status: 
     description: 'The status of the webhook event'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/main.js'

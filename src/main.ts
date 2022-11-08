@@ -7,16 +7,19 @@ async function run() {
     : process.env.WEBHOOK_URL
     ? process.env.WEBHOOK_URL
     : ''
+
   const headers = core.getInput('headers')
     ? core.getInput('headers')
     : process.env.headers
     ? process.env.headers
     : null
+
   const body = core.getInput('body')
     ? core.getInput('body')
     : process.env.data
     ? process.env.data
     : null
+
   const insecure = core.getInput('insecure')
     ? core.getInput('insecure') == 'true'
     : process.env.insecure
@@ -47,12 +50,12 @@ async function run() {
         return
       }
 
-      // output the status
-      core.setOutput('statusCode', res.status)
       // report on the status code
       core.info(`Received status code: ${res.status}`)
+      
       // debug end
       core.info(new Date().toTimeString())
+
     })
     .catch(err => {
       error(err.status)
