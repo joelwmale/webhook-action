@@ -112,7 +112,7 @@ function run() {
                 core.setFailed('A url is required to run this action.');
                 throw new Error('A url is required to run this action.');
             }
-            core.info("Sending webhook request to " + url);
+            core.info("Sending webhook request to ".concat(url));
             core.debug(new Date().toTimeString());
             http_1.http
                 .make(url, headers, body, insecure)
@@ -121,8 +121,7 @@ function run() {
                     error(res.status);
                     return;
                 }
-                core.setOutput('statusCode', res.status);
-                core.info("Received status code: " + res.status);
+                core.info("Received status code: ".concat(res.status));
                 core.info(new Date().toTimeString());
             })
                 .catch(function (err) {
@@ -134,8 +133,8 @@ function run() {
     });
 }
 function error(statusCode) {
-    core.setFailed("Received status code: " + statusCode);
-    throw new Error("Request failed with status code: " + statusCode);
+    core.setFailed("Received status code: ".concat(statusCode));
+    throw new Error("Request failed with status code: ".concat(statusCode));
 }
 run();
 //# sourceMappingURL=main.js.map
