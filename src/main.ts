@@ -33,6 +33,9 @@ async function run() {
     throw new Error('A url is required to run this action.')
   }
 
+    // initial info
+    core.info(`Sending webhook request to ${url}`)
+
   // make the request
   http
     .make(url, headers, body, insecure)
@@ -46,6 +49,7 @@ async function run() {
 
     })
     .catch(err => {
+      core.info(`Error: ${err}`)
       error(err.status)
       return
     })

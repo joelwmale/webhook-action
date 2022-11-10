@@ -7008,6 +7008,7 @@ function run() {
             core.setFailed('A url is required to run this action.');
             throw new Error('A url is required to run this action.');
         }
+        core.info(`Sending webhook request to ${url}`);
         http_1.http
             .make(url, headers, body, insecure)
             .then(res => {
@@ -7017,6 +7018,7 @@ function run() {
             }
         })
             .catch(err => {
+            core.info(`Error: ${err}`);
             error(err.status);
             return;
         });
