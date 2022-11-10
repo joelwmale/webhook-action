@@ -1,4 +1,4 @@
-const fetch = require('node-fetch')
+import fetch from 'node-fetch';
 var https = require('https')
 
 class Http {
@@ -12,7 +12,7 @@ class Http {
       fetch(
         url,
         this.getOptions('post', headers, body, ignoreCertificate)
-      ).then((res: Response) => resolve(res))
+      ).then((res: any) => resolve(res))
     })
   }
 
