@@ -12,7 +12,7 @@ var isPrefixOf = require('../helpers/isPrefixOf');
 
 var Type = require('./Type');
 
-// https://ecma-international.org/ecma-262/9.0/#sec-isstringprefix
+// https://262.ecma-international.org/9.0/#sec-isstringprefix
 
 module.exports = function IsStringPrefix(p, q) {
 	if (Type(p) !== 'String') {

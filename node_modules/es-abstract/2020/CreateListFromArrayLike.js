@@ -14,7 +14,7 @@ var LengthOfArrayLike = require('./LengthOfArrayLike');
 var ToString = require('./ToString');
 var Type = require('./Type');
 
-// https://ecma-international.org/ecma-262/11.0/#sec-createlistfromarraylike
+// https://262.ecma-international.org/11.0/#sec-createlistfromarraylike
 
 module.exports = function CreateListFromArrayLike(obj) {
 	var elementTypes = arguments.length > 1

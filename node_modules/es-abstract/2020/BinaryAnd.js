@@ -4,7 +4,7 @@ var GetIntrinsic = require('get-intrinsic');
 
 var $TypeError = GetIntrinsic('%TypeError%');
 
-// https://ecma-international.org/ecma-262/11.0/#sec-binaryand
+// https://262.ecma-international.org/11.0/#sec-binaryand
 
 module.exports = function BinaryAnd(x, y) {
 	if ((x !== 0 && x !== 1) || (y !== 0 && y !== 1)) {

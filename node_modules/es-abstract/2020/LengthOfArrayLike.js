@@ -8,7 +8,7 @@ var Get = require('./Get');
 var ToLength = require('./ToLength');
 var Type = require('./Type');
 
-// https://ecma-international.org/ecma-262/11.0/#sec-lengthofarraylike
+// https://262.ecma-international.org/11.0/#sec-lengthofarraylike
 
 module.exports = function LengthOfArrayLike(obj) {
 	if (Type(obj) !== 'Object') {

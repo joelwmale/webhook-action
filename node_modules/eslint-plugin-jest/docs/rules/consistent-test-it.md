@@ -1,4 +1,9 @@
-# Have control over `test` and `it` usages (`consistent-test-it`)
+# Enforce `test` and `it` usage conventions (`consistent-test-it`)
+
+🔧 This rule is automatically fixable by the
+[`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 Jest allows you to choose how you want to define your tests, using the `it` or
 the `test` keywords, with multiple permutations for each:
@@ -6,9 +11,11 @@ the `test` keywords, with multiple permutations for each:
 - **it:** `it`, `xit`, `fit`, `it.only`, `it.skip`.
 - **test:** `test`, `xtest`, `test.only`, `test.skip`.
 
+## Rule details
+
 This rule gives you control over the usage of these keywords in your codebase.
 
-## Rule Details
+## Options
 
 This rule can be configured as follows
 
@@ -68,8 +75,6 @@ describe('foo', function () {
   it('bar'); // invalid
 });
 ```
-
-### Default configuration
 
 The default configuration forces all top-level tests to use `test` and all tests
 nested within `describe` to use `it`.

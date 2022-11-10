@@ -10,7 +10,7 @@ var IsExtensible = require('./IsExtensible');
 var IsNonNegativeInteger = require('./IsNonNegativeInteger');
 var Type = require('./Type');
 
-// https://ecma-international.org/ecma-262/11.0/#sec-setfunctionlength
+// https://262.ecma-international.org/11.0/#sec-setfunctionlength
 
 module.exports = function SetFunctionLength(F, length) {
 	if (typeof F !== 'function' || !IsExtensible(F) || HasOwnProperty(F, 'length')) {

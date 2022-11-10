@@ -10,7 +10,7 @@ var $TypeError = GetIntrinsic('%TypeError%');
 var RequireObjectCoercible = require('./RequireObjectCoercible');
 var ToString = require('./ToString');
 
-// https://ecma-international.org/ecma-262/10.0/#sec-trimstring
+// https://262.ecma-international.org/10.0/#sec-trimstring
 
 module.exports = function TrimString(string, where) {
 	var str = RequireObjectCoercible(string);

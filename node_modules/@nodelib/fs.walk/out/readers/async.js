@@ -58,7 +58,8 @@ class AsyncReader extends reader_1.default {
     _worker(item, done) {
         this._scandir(item.directory, this._settings.fsScandirSettings, (error, entries) => {
             if (error !== null) {
-                return done(error, undefined);
+                done(error, undefined);
+                return;
             }
             for (const entry of entries) {
                 this._handleEntry(entry, item.base);
@@ -86,7 +87,7 @@ class AsyncReader extends reader_1.default {
             this._emitEntry(entry);
         }
         if (entry.dirent.isDirectory() && common.isAppliedFilter(this._settings.deepFilter, entry)) {
-            this._pushToQueue(fullpath, entry.path);
+            this._pushToQueue(fullpath, base === undefined ? undefined : entry.path);
         }
     }
     _emitEntry(entry) {

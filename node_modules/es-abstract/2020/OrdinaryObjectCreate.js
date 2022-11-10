@@ -11,7 +11,7 @@ var Type = require('./Type');
 
 var hasProto = !({ __proto__: null } instanceof Object);
 
-// https://ecma-international.org/ecma-262/6.0/#sec-objectcreate
+// https://262.ecma-international.org/6.0/#sec-objectcreate
 
 module.exports = function OrdinaryObjectCreate(proto) {
 	if (proto !== null && Type(proto) !== 'Object') {

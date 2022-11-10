@@ -11,7 +11,7 @@ var ToString = require('./ToString');
 
 var $strSlice = callBound('String.prototype.slice');
 
-// https://ecma-international.org/ecma-262/11.0/#sec-stringpad
+// https://262.ecma-international.org/11.0/#sec-stringpad
 
 module.exports = function StringPad(O, maxLength, fillString, placement) {
 	if (placement !== 'start' && placement !== 'end') {

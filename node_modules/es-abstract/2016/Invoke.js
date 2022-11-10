@@ -4,9 +4,8 @@ var GetIntrinsic = require('get-intrinsic');
 
 var $TypeError = GetIntrinsic('%TypeError%');
 
-var $arraySlice = require('call-bind/callBound')('Array.prototype.slice');
-
 var Call = require('./Call');
+var IsArray = require('./IsArray');
 var GetV = require('./GetV');
 var IsPropertyKey = require('./IsPropertyKey');
 
@@ -14,9 +13,12 @@ var IsPropertyKey = require('./IsPropertyKey');
 
 module.exports = function Invoke(O, P) {
 	if (!IsPropertyKey(P)) {
-		throw new $TypeError('P must be a Property Key');
+		throw new $TypeError('Assertion failed: P must be a Property Key');
 	}
-	var argumentsList = $arraySlice(arguments, 2);
+	var argumentsList = arguments.length > 2 ? arguments[2] : [];
+	if (!IsArray(argumentsList)) {
+		throw new $TypeError('Assertion failed: optional `argumentsList`, if provided, must be a List');
+	}
 	var func = GetV(O, P);
 	return Call(func, O, argumentsList);
 };

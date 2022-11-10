@@ -15,7 +15,7 @@ var Type = require('./Type');
 
 var isNegativeZero = require('is-negative-zero');
 
-// https://ecma-international.org/ecma-262/8.0/#sec-stringgetownproperty
+// https://262.ecma-international.org/8.0/#sec-stringgetownproperty
 
 module.exports = function StringGetOwnProperty(S, P) {
 	var str;
