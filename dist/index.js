@@ -6937,12 +6937,12 @@ exports.debug = debug; // for test
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.http = void 0;
-const fetch = __nccwpck_require__(4429);
+const node_fetch_1 = __nccwpck_require__(4429);
 var https = __nccwpck_require__(5687);
 class Http {
     make(url, headers, body, ignoreCertificate) {
         return new Promise((resolve, reject) => {
-            fetch(url, this.getOptions('post', headers, body, ignoreCertificate)).then((res) => resolve(res));
+            (0, node_fetch_1.default)(url, this.getOptions('post', headers, body, ignoreCertificate)).then((res) => resolve(res));
         });
     }
     getOptions(method, headers, body, ignoreCertificate) {
