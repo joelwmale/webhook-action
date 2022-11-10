@@ -2,12 +2,15 @@
     "name": "webhook-action",
     "version": "2.2.0",
     "description": "Github Webhook Action",
-    "main": "dist/main.js",
+    "main": "dist/index.js",
     "scripts": {
-        "build": "tsc",
-        "format": "prettier --write **/*.ts",
+        "build": "tsc --build --clean && ncc build src/main.ts -o dist",
+        "format": "prettier --write '**/*.ts'",
+        "format-check": "prettier --check '**/*.ts'",
         "lint": "eslint src/**/*.ts",
-        "package": "ncc build --source-map"
+        "package": "ncc build --source-map --license licenses.txt",
+        "test": "jest",
+        "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
     },
     "repository": {
         "type": "git",
@@ -27,17 +30,16 @@
         "node-fetch": "^3.2.10"
     },
     "devDependencies": {
-        "@types/jest": "^29.2.2",
         "@types/node": "^18.11.9",
         "@typescript-eslint/parser": "^5.42.1",
         "@vercel/ncc": "^0.34.0",
         "eslint": "^8.27.0",
         "eslint-plugin-github": "^4.4.1",
-        "eslint-plugin-jest": "^27.1.4",
         "https": "^1.0.0",
         "js-yaml": "^4.1.0",
         "prettier": "2.7.1",
         "semver": "^7.3.8",
-        "typescript": "^4.8.4"
+        "typescript": "^4.8.4",
+        "uuid": "^9.0.0"
     }
 }

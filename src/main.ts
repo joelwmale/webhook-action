@@ -33,11 +33,7 @@ async function run() {
     throw new Error('A url is required to run this action.')
   }
 
-  // initial info
   core.info(`Sending webhook request to ${url}`)
-
-  // debug start
-  core.debug(new Date().toTimeString()) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
 
   // make the request
   http
@@ -50,14 +46,9 @@ async function run() {
         return
       }
 
-      // report on the status code
-      core.info(`Received status code: ${res.status}`)
-      
-      // debug end
-      core.info(new Date().toTimeString())
-
     })
     .catch(err => {
+      core.info(`Error: ${err}`);
       error(err.status)
       return
     })

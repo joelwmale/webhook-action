@@ -22,4 +22,4 @@ outputs:
     description: 'The status of the webhook event'
 runs:
   using: 'node16'
-  main: 'dist/main.js'
+  main: 'dist/index.js'
