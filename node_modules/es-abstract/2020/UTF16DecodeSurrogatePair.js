@@ -8,7 +8,7 @@ var $fromCharCode = GetIntrinsic('%String.fromCharCode%');
 var isLeadingSurrogate = require('../helpers/isLeadingSurrogate');
 var isTrailingSurrogate = require('../helpers/isTrailingSurrogate');
 
-// https://ecma-international.org/ecma-262/11.0/#sec-utf16decodesurrogatepair
+// https://262.ecma-international.org/11.0/#sec-utf16decodesurrogatepair
 
 module.exports = function UTF16DecodeSurrogatePair(lead, trail) {
 	if (!isLeadingSurrogate(lead) || !isTrailingSurrogate(trail)) {

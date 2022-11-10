@@ -7,7 +7,7 @@ var $TypeError = GetIntrinsic('%TypeError%');
 
 var Type = require('./Type');
 
-// https://ecma-international.org/ecma-262/9.0/#sec-tostring-applied-to-the-number-type
+// https://262.ecma-international.org/9.0/#sec-tostring-applied-to-the-number-type
 
 module.exports = function NumberToString(m) {
 	if (Type(m) !== 'Number') {

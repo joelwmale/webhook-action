@@ -14,7 +14,7 @@ var IsArray = require('./IsArray');
 var LengthOfArrayLike = require('./LengthOfArrayLike');
 var ToString = require('./ToString');
 
-// https://ecma-international.org/ecma-262/11.0/#sec-flattenintoarray
+// https://262.ecma-international.org/11.0/#sec-flattenintoarray
 
 // eslint-disable-next-line max-params
 module.exports = function FlattenIntoArray(target, source, sourceLen, start, depth) {

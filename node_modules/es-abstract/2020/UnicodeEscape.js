@@ -12,7 +12,7 @@ var $toLowerCase = callBound('String.prototype.toLowerCase');
 
 var StringPad = require('./StringPad');
 
-// https://ecma-international.org/ecma-262/11.0/#sec-unicodeescape
+// https://262.ecma-international.org/11.0/#sec-unicodeescape
 
 module.exports = function UnicodeEscape(C) {
 	if (typeof C !== 'string' || C.length !== 1) {
