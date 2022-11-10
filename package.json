@@ -2,7 +2,7 @@
     "name": "webhook-action",
     "version": "2.2.0",
     "description": "Github Webhook Action",
-    "main": "dist/main.js",
+    "main": "dist/index.js",
     "scripts": {
         "build": "tsc --build --clean && ncc build src/main.ts -o dist",
         "format": "prettier --write **/*.ts",
