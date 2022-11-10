@@ -4,9 +4,9 @@ var https = require('https')
 class Http {
   make(
     url: string,
-    headers: string | null,
     body: string | null,
-    ignoreCertificate: boolean | null
+    headers: string | null = null,
+    ignoreCertificate: boolean | null = false
   ): Promise<any> {
     return new Promise((resolve, reject) => {
       fetch(

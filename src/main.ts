@@ -37,7 +37,7 @@ async function run() {
 
   // make the request
   http
-    .make(url, headers, body, insecure)
+    .make(url, body, headers, insecure)
     .then(res => {
       // if the status code is not 2xx
       if (res.status >= 400) {

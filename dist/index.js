@@ -6940,7 +6940,7 @@ exports.http = void 0;
 const node_fetch_1 = __nccwpck_require__(4429);
 var https = __nccwpck_require__(5687);
 class Http {
-    make(url, headers, body, ignoreCertificate) {
+    make(url, body, headers = null, ignoreCertificate = false) {
         return new Promise((resolve, reject) => {
             (0, node_fetch_1.default)(url, this.getOptions('post', headers, body, ignoreCertificate)).then((res) => resolve(res));
         });
@@ -7010,7 +7010,7 @@ function run() {
         }
         core.info(`Sending webhook request to ${url}`);
         http_1.http
-            .make(url, headers, body, insecure)
+            .make(url, body, headers, insecure)
             .then(res => {
             if (res.status >= 400) {
                 error(res.status);
