@@ -27,7 +27,7 @@
     "license": "MIT",
     "dependencies": {
         "@actions/core": "^1.10.0",
-        "node-fetch": "^3.2.10"
+        "node-fetch": "^3.3.0"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.20.2",
