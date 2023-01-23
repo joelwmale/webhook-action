@@ -32,7 +32,7 @@
     "devDependencies": {
         "@babel/preset-env": "^7.20.2",
         "@types/node": "^18.11.9",
-        "@typescript-eslint/parser": "^5.42.1",
+        "@typescript-eslint/parser": "^5.48.2",
         "@vercel/ncc": "^0.34.0",
         "babel-jest": "^29.3.1",
         "eslint": "^8.27.0",
