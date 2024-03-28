@@ -4,13 +4,12 @@
     "description": "Github Webhook Action",
     "main": "dist/main.js",
     "scripts": {
-        "build": "tsc && ncc build",
+        "build": "tsc && ncc build --license licenses.txt",
         "format": "prettier --write '**/*.ts'",
         "format-check": "prettier --check '**/*.ts'",
         "lint": "eslint src/**/*.ts",
-        "package": "ncc build --source-map --license licenses.txt",
         "test": "jest",
-        "all": "npm run build && npm run format && npm test && npm run lint && npm run package"
+        "all": "npm run format && npm run lint && npm run test&& npm run build"
     },
     "repository": {
         "type": "git",
@@ -39,6 +38,7 @@
         "babel-jest": "^29.3.1",
         "eslint": "^8.57.0",
         "eslint-plugin-github": "^4.10.2",
+        "eslint-plugin-jest": "^27.9.0",
         "https": "^1.0.0",
         "jest": "^29.7.0",
         "js-yaml": "^4.1.0",

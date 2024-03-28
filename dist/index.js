@@ -72,14 +72,14 @@ function run() {
                 ? process.env.data
                 : null;
         const insecure = core.getInput('insecure')
-            ? core.getInput('insecure') == 'true'
+            ? core.getInput('insecure') === 'true'
             : process.env.insecure
-                ? process.env.insecure == 'true'
+                ? process.env.insecure === 'true'
                 : false;
-        const githubEvent = core.getInput('github_event') == 'true';
-        if (githubEvent) {
+        const githubEventPayload = core.getInput('github_event_payload') === 'true';
+        if (githubEventPayload) {
             const decodedBody = JSON.parse(body || '{}');
-            decodedBody.github_event = github_1.context;
+            decodedBody.githubEventPayload = github_1.context.payload || {};
             body = JSON.stringify(decodedBody);
         }
         if (!url) {

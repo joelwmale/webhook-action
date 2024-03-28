@@ -17,8 +17,8 @@ inputs:
   insecure:
     description: 'Enables calling to known self-signed or invalid SSL certificates'
     required: false
-  github_event:
-    description: 'Include the event that triggered the action in the payload body'
+  github_event_payload:
+    description: 'Include the github event payload that triggered the action in the payload'
     required: false
 outputs:
   status: 

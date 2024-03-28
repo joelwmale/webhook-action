@@ -25,6 +25,9 @@
         "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        "github/no-then": "off",
+        "import/no-namespace": "off",
+        "i18n-text/no-en": "off"
     }
 }

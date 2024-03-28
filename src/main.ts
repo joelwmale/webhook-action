@@ -22,20 +22,20 @@ async function run() {
       : null
 
   const insecure = core.getInput('insecure')
-    ? core.getInput('insecure') == 'true'
+    ? core.getInput('insecure') === 'true'
     : process.env.insecure
-      ? process.env.insecure == 'true'
+      ? process.env.insecure === 'true'
       : false
 
-  const githubEvent = core.getInput('github_event') == 'true'
+  const githubEventPayload = core.getInput('github_event_payload') === 'true'
 
   // if github_event is set to true, append it to the body
-  if (githubEvent) {
+  if (githubEventPayload) {
     // decode the body
     const decodedBody = JSON.parse(body || '{}')
 
     // set the github event
-    decodedBody.github_event = context
+    decodedBody.githubEventPayload = context.payload || {}
 
     // re-set the body
     body = JSON.stringify(decodedBody)
