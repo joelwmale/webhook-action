@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
+        "target": "es6",
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
         "strictPropertyInitialization": false,
         "jsx": "react",
         "lib": [
           "dom",
-          "es7"
+          "es6"
         ],
         "module": "commonjs",
         "noImplicitReturns": true,
@@ -16,7 +17,7 @@
         "removeComments": true,
         "sourceMap": true,
         "strict": true,
-        "target": "es6"
+        "skipLibCheck": true
     },
     "exclude": ["node_modules", "**/*.test.ts"]
 }
