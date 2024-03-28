@@ -1,30 +1,45 @@
 import * as core from '@actions/core'
 import {http} from './http'
+import {context} from '@actions/github'
 
 async function run() {
   const url = core.getInput('url')
     ? core.getInput('url')
     : process.env.WEBHOOK_URL
-    ? process.env.WEBHOOK_URL
-    : ''
+      ? process.env.WEBHOOK_URL
+      : ''
 
   const headers = core.getInput('headers')
     ? core.getInput('headers')
     : process.env.headers
-    ? process.env.headers
-    : null
+      ? process.env.headers
+      : null
 
-  const body = core.getInput('body')
+  let body = core.getInput('body')
     ? core.getInput('body')
     : process.env.data
-    ? process.env.data
-    : null
+      ? process.env.data
+      : null
 
   const insecure = core.getInput('insecure')
-    ? core.getInput('insecure') == 'true'
+    ? core.getInput('insecure') === 'true'
     : process.env.insecure
-    ? process.env.insecure == 'true'
-    : false
+      ? process.env.insecure === 'true'
+      : false
+
+  const githubEventPayload = core.getInput('github_event_payload') === 'true'
+
+  // if github_event is set to true, append it to the body
+  if (githubEventPayload) {
+    // decode the body
+    const decodedBody = JSON.parse(body || '{}')
+
+    // set the github event
+    decodedBody.githubEventPayload = context.payload || {}
+
+    // re-set the body
+    body = JSON.stringify(decodedBody)
+  }
 
   if (!url) {
     // validate a url
@@ -37,7 +52,7 @@ async function run() {
 
   // make the request
   http
-    .make(url, headers, body, insecure)
+    .make(url, body, headers, insecure)
     .then(res => {
       // if the status code is not 2xx
       if (res.status >= 400) {
@@ -45,10 +60,9 @@ async function run() {
         error(res.status)
         return
       }
-
     })
     .catch(err => {
-      core.info(`Error: ${err}`);
+      core.info(`Error: ${err}`)
       error(err.status)
       return
     })

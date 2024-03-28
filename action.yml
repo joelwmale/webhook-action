@@ -17,9 +17,13 @@ inputs:
   insecure:
     description: 'Enables calling to known self-signed or invalid SSL certificates'
     required: false
+  github_event_payload:
+    description: 'Include the github event payload that triggered the action in the payload'
+    required: false
 outputs:
   status: 
     description: 'The status of the webhook event'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
+  post: 'dist/index.js'
