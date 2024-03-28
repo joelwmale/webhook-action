@@ -12,6 +12,7 @@
         "noImplicitReturns": true,
         "noImplicitAny": false,
         "outDir": "./dist/",
+        "rootDir": "./src/",
         "removeComments": true,
         "sourceMap": true,
         "strict": true,

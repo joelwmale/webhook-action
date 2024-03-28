@@ -22,4 +22,5 @@ outputs:
     description: 'The status of the webhook event'
 runs:
   using: 'node20'
-  main: 'dist/index.js'
+  main: 'dist/main.js'
+  post: 'dist/main.js'

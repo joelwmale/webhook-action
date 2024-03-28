@@ -1,6 +1,115 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 4319:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.http = void 0;
+const node_fetch_1 = __nccwpck_require__(1793);
+const https = __nccwpck_require__(5687);
+class Http {
+    make(url, body, headers = null, ignoreCertificate = false) {
+        return new Promise(resolve => {
+            (0, node_fetch_1.default)(url, this.getOptions('post', headers, body, ignoreCertificate)).then((res) => resolve(res));
+        });
+    }
+    getOptions(method, headers, body, ignoreCertificate) {
+        const options = {
+            headers: headers ? JSON.parse(headers) : {},
+            method
+        };
+        if (body) {
+            options.body = body;
+        }
+        if (ignoreCertificate) {
+            options.agent = new https.Agent({ rejectUnauthorized: false });
+        }
+        options.headers['content-type'] = 'application/json';
+        return options;
+    }
+}
+exports.http = new Http();
+//# sourceMappingURL=http.js.map
+
+/***/ }),
+
+/***/ 9496:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core = __nccwpck_require__(2186);
+const http_1 = __nccwpck_require__(4319);
+const github_1 = __nccwpck_require__(5438);
+function run() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const url = core.getInput('url')
+            ? core.getInput('url')
+            : process.env.WEBHOOK_URL
+                ? process.env.WEBHOOK_URL
+                : '';
+        const headers = core.getInput('headers')
+            ? core.getInput('headers')
+            : process.env.headers
+                ? process.env.headers
+                : null;
+        let body = core.getInput('body')
+            ? core.getInput('body')
+            : process.env.data
+                ? process.env.data
+                : null;
+        const insecure = core.getInput('insecure')
+            ? core.getInput('insecure') == 'true'
+            : process.env.insecure
+                ? process.env.insecure == 'true'
+                : false;
+        if (process.env.github_event && body) {
+            const decodedBody = JSON.parse(body);
+            decodedBody.github_event = github_1.context;
+            body = JSON.stringify(decodedBody);
+        }
+        if (!url) {
+            core.setFailed('A url is required to run this action.');
+            throw new Error('A url is required to run this action.');
+        }
+        core.info(`Sending webhook request to ${url}`);
+        http_1.http
+            .make(url, body, headers, insecure)
+            .then(res => {
+            if (res.status >= 400) {
+                error(res.status);
+                return;
+            }
+        })
+            .catch(err => {
+            core.info(`Error: ${err}`);
+            error(err.status);
+            return;
+        });
+    });
+}
+function error(statusCode) {
+    core.setFailed(`Received status code: ${statusCode}`);
+    throw new Error(`Request failed with status code: ${statusCode}`);
+}
+run();
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
 /***/ 7351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -33738,115 +33847,6 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 9047:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.http = void 0;
-const node_fetch_1 = __nccwpck_require__(1793);
-const https = __nccwpck_require__(5687);
-class Http {
-    make(url, body, headers = null, ignoreCertificate = false) {
-        return new Promise(resolve => {
-            (0, node_fetch_1.default)(url, this.getOptions('post', headers, body, ignoreCertificate)).then((res) => resolve(res));
-        });
-    }
-    getOptions(method, headers, body, ignoreCertificate) {
-        const options = {
-            headers: headers ? JSON.parse(headers) : {},
-            method
-        };
-        if (body) {
-            options.body = body;
-        }
-        if (ignoreCertificate) {
-            options.agent = new https.Agent({ rejectUnauthorized: false });
-        }
-        options.headers['content-type'] = 'application/json';
-        return options;
-    }
-}
-exports.http = new Http();
-
-
-/***/ }),
-
-/***/ 399:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core = __nccwpck_require__(2186);
-const http_1 = __nccwpck_require__(9047);
-const github_1 = __nccwpck_require__(5438);
-function run() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const url = core.getInput('url')
-            ? core.getInput('url')
-            : process.env.WEBHOOK_URL
-                ? process.env.WEBHOOK_URL
-                : '';
-        const headers = core.getInput('headers')
-            ? core.getInput('headers')
-            : process.env.headers
-                ? process.env.headers
-                : null;
-        let body = core.getInput('body')
-            ? core.getInput('body')
-            : process.env.data
-                ? process.env.data
-                : null;
-        const insecure = core.getInput('insecure')
-            ? core.getInput('insecure') == 'true'
-            : process.env.insecure
-                ? process.env.insecure == 'true'
-                : false;
-        if (process.env.github_event && body) {
-            const decodedBody = JSON.parse(body);
-            decodedBody.github_event = github_1.context;
-            body = JSON.stringify(decodedBody);
-        }
-        if (!url) {
-            core.setFailed('A url is required to run this action.');
-            throw new Error('A url is required to run this action.');
-        }
-        core.info(`Sending webhook request to ${url}`);
-        http_1.http
-            .make(url, body, headers, insecure)
-            .then(res => {
-            if (res.status >= 400) {
-                error(res.status);
-                return;
-            }
-        })
-            .catch(err => {
-            core.info(`Error: ${err}`);
-            error(err.status);
-            return;
-        });
-    });
-}
-function error(statusCode) {
-    core.setFailed(`Received status code: ${statusCode}`);
-    throw new Error(`Request failed with status code: ${statusCode}`);
-}
-run();
-
-
-/***/ }),
-
 /***/ 9491:
 /***/ ((module) => {
 
@@ -38592,7 +38592,7 @@ function fixResponseChunkedTransferBadEnding(request, errorCallback) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(399);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(9496);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
