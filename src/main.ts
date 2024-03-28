@@ -6,26 +6,26 @@ async function run() {
   const url = core.getInput('url')
     ? core.getInput('url')
     : process.env.WEBHOOK_URL
-    ? process.env.WEBHOOK_URL
-    : ''
+      ? process.env.WEBHOOK_URL
+      : ''
 
   const headers = core.getInput('headers')
     ? core.getInput('headers')
     : process.env.headers
-    ? process.env.headers
-    : null
+      ? process.env.headers
+      : null
 
-  var body = core.getInput('body')
+  let body = core.getInput('body')
     ? core.getInput('body')
     : process.env.data
-    ? process.env.data
-    : null
+      ? process.env.data
+      : null
 
   const insecure = core.getInput('insecure')
     ? core.getInput('insecure') == 'true'
     : process.env.insecure
-    ? process.env.insecure == 'true'
-    : false
+      ? process.env.insecure == 'true'
+      : false
 
   // if github_event is set to true, append it to the body
   if (process.env.github_event && body) {
@@ -33,10 +33,10 @@ async function run() {
     const decodedBody = JSON.parse(body)
 
     // set the github event
-    decodedBody.github_event = context;
+    decodedBody.github_event = context
 
     // re-set the body
-    body = JSON.stringify(decodedBody);
+    body = JSON.stringify(decodedBody)
   }
 
   if (!url) {
@@ -58,10 +58,9 @@ async function run() {
         error(res.status)
         return
       }
-
     })
     .catch(err => {
-      core.info(`Error: ${err}`);
+      core.info(`Error: ${err}`)
       error(err.status)
       return
     })

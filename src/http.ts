@@ -1,5 +1,5 @@
-import fetch from 'node-fetch';
-var https = require('https')
+import fetch from 'node-fetch'
+import https = require('https')
 
 class Http {
   make(
@@ -8,7 +8,7 @@ class Http {
     headers: string | null = null,
     ignoreCertificate: boolean | null = false
   ): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       fetch(
         url,
         this.getOptions('post', headers, body, ignoreCertificate)
