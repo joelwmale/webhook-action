@@ -1,6 +1,6 @@
 {
     "name": "webhook-action",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "description": "Github Webhook Action",
     "main": "dist/main.js",
     "scripts": {
