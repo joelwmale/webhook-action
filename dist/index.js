@@ -76,8 +76,9 @@ function run() {
             : process.env.insecure
                 ? process.env.insecure == 'true'
                 : false;
-        if (process.env.github_event && body) {
-            const decodedBody = JSON.parse(body);
+        const githubEvent = core.getInput('github_event') == 'true';
+        if (githubEvent) {
+            const decodedBody = JSON.parse(body || '{}');
             decodedBody.github_event = github_1.context;
             body = JSON.stringify(decodedBody);
         }

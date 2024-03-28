@@ -27,10 +27,12 @@ async function run() {
       ? process.env.insecure == 'true'
       : false
 
+  const githubEvent = core.getInput('github_event') == 'true'
+
   // if github_event is set to true, append it to the body
-  if (process.env.github_event && body) {
+  if (githubEvent) {
     // decode the body
-    const decodedBody = JSON.parse(body)
+    const decodedBody = JSON.parse(body || '{}')
 
     // set the github event
     decodedBody.github_event = context
