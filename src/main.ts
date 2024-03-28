@@ -1,5 +1,6 @@
 import * as core from '@actions/core'
 import {http} from './http'
+import {context} from '@actions/github'
 
 async function run() {
   const url = core.getInput('url')
@@ -14,7 +15,7 @@ async function run() {
     ? process.env.headers
     : null
 
-  const body = core.getInput('body')
+  var body = core.getInput('body')
     ? core.getInput('body')
     : process.env.data
     ? process.env.data
@@ -25,6 +26,18 @@ async function run() {
     : process.env.insecure
     ? process.env.insecure == 'true'
     : false
+
+  // if github_event is set to true, append it to the body
+  if (process.env.github_event && body) {
+    // decode the body
+    const decodedBody = JSON.parse(body)
+
+    // set the github event
+    decodedBody.github_event = context;
+
+    // re-set the body
+    body = JSON.stringify(decodedBody);
+  }
 
   if (!url) {
     // validate a url
