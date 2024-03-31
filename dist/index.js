@@ -56,6 +56,9 @@ const http_1 = __nccwpck_require__(4319);
 const github_1 = __nccwpck_require__(5438);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
+        if (github_1.context.job === 'post') {
+            return;
+        }
         const url = core.getInput('url')
             ? core.getInput('url')
             : process.env.WEBHOOK_URL
