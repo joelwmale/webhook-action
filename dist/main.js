@@ -14,9 +14,6 @@ const http_1 = require("./http");
 const github_1 = require("@actions/github");
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        if (github_1.context.job === 'post') {
-            return;
-        }
         const url = core.getInput('url')
             ? core.getInput('url')
             : process.env.WEBHOOK_URL
