@@ -3,11 +3,6 @@ import {http} from './http'
 import {context} from '@actions/github'
 
 async function run() {
-  // if its a post job do nothing
-  if (context.job === 'post') {
-    return
-  }
-
   const url = core.getInput('url')
     ? core.getInput('url')
     : process.env.WEBHOOK_URL
