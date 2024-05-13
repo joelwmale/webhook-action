@@ -32,7 +32,7 @@
     },
     "devDependencies": {
         "@babel/preset-env": "^7.20.2",
-        "@types/node": "^18.19.26",
+        "@types/node": "^20.12.11",
         "@typescript-eslint/eslint-plugin": "^7.4.0",
         "@typescript-eslint/parser": "^5.62.0",
         "babel-jest": "^29.3.1",
