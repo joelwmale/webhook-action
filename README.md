@@ -15,7 +15,7 @@ Example:
 
 ```yml
 - name: Webhook
-  uses: joelwmale/webhook-action@master
+  uses: joelwmale/webhook-action@v2
   with:
     url: ${{ secrets.WEBHOOK_URL }}
     headers: '{"repository": "joelwmale/webhook-action"}'
@@ -23,19 +23,21 @@ Example:
     github_event_payload: true
 ```
 
-It is **highly** recommended to use the action is an explicit commit SHA-1:
+Pin to a specific version for stability:
 
-`uses = "joelwmale/webhook-action@{SHA-1}"` to find a commit click [here.](https://github.com/joelwmale/webhook-action/commits/master)
+```yml
+uses: joelwmale/webhook-action@v2.4.2
+```
 
 ## Action Input
 
 The action has support for the following input variables (arguments):
 
-* **`url`** (**required**): The url to send the webhook to
-* **`headers`** (**optional**): Any headers you want to be sent with the webhook
-* **`body`** (**optional**): The body of data send with the webhook
-* **`insecure`** (**optional**): Enables calling to known self-signed or invalid SSL certificates
-* **`github_event_payload`** (**optional**): Enables forwarding the Github event payload to your webhook.
+- **`url`** (**required**): The url to send the webhook to
+- **`headers`** (**optional**): Any headers you want to be sent with the webhook
+- **`body`** (**optional**): The body of data send with the webhook
+- **`insecure`** (**optional**): Enables calling to known self-signed or invalid SSL certificates
+- **`github_event_payload`** (**optional**): Enables forwarding the Github event payload to your webhook.
 
 You can find more information on how to use these input variables below.
 
@@ -47,14 +49,14 @@ You can find more information on how to use these input variables below.
 
 The URL to send the webhook to
 
-```yml 
-  url: ${{ secrets.WEBHOOK_URL }}
+```yml
+url: ${{ secrets.WEBHOOK_URL }}
 ```
 
 or
 
-```yml 
-  url: https://webhook.site/8b1b1b1b-8b1b-8b1b-8b1b-8b1b1b1b1b1b
+```yml
+url: https://webhook.site/8b1b1b1b-8b1b-8b1b-8b1b-8b1b1b1b1b1b
 ```
 
 #### Headers
@@ -63,8 +65,8 @@ or
 
 Allows you to send custom headers with the request
 
-```yml 
-  headers: '{"repository": "joelwmale/webhook-action"}'
+```yml
+headers: '{"repository": "joelwmale/webhook-action"}'
 ```
 
 #### Body
@@ -74,8 +76,8 @@ Allows you to send custom headers with the request
 
 Allows you to send a custom JSON object to the webhook
 
-```yml 
-  body: '{"event": "deployment", "repository": "joelwmale/webhook-action"}'
+```yml
+body: '{"event": "deployment", "repository": "joelwmale/webhook-action"}'
 ```
 
 #### Insecure
@@ -85,8 +87,8 @@ Allows you to send a custom JSON object to the webhook
 
 Allows you to send a webhook to a known self-signed or invalid SSL certificate
 
-```yml 
-  insecure: true
+```yml
+insecure: true
 ```
 
 #### Github Event Payload
@@ -98,8 +100,8 @@ Allows you to send the Github event payload to your webhook
 
 The payload will be sent as a JSON object under the key `githubEventPayload` on the root of the payload sent to your webhook
 
-```yml 
-  github_event_payload: true
+```yml
+github_event_payload: true
 ```
 
 ## Issues
