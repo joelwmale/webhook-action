@@ -2,6 +2,7 @@
 
 [![GitHub Release][ico-release]][link-github-release]
 [![License][ico-license]](LICENSE)
+[![Tests][ico-tests]][link-tests]
 
 A Github Action for sending a webhook event any endpoint
 
@@ -114,4 +115,6 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
 [ico-release]: https://img.shields.io/github/tag/joelwmale/webhook-action.svg
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg
+[ico-tests]: https://github.com/joelwmale/webhook-action/actions/workflows/tests.yml/badge.svg
 [link-github-release]: https://github.com/joelwmale/webhook-action/releases
+[link-tests]: https://github.com/joelwmale/webhook-action/actions/workflows/tests.yml
