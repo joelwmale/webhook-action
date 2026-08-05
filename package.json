@@ -26,7 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^2.0.3",
-    "@actions/github": "^7.0.0",
+    "@actions/github": "^9.1.1",
     "@actions/http-client": "^4.0.1",
     "@vercel/ncc": "^0.38.4",
     "node-fetch": "^3.3.2"
@@ -50,10 +50,10 @@
     "uuid": "^11.1.1"
   },
   "overrides": {
-    "undici": "^6.26.0"
+    "undici": "^6.28.0"
   },
   "resolutions": {
-    "undici": "^6.26.0",
+    "undici": "^6.28.0",
     "braces": "^3.0.3",
     "micromatch": "^4.0.8"
   }
